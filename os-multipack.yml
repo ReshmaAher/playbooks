@@ -1,0 +1,21 @@
+---
+- hosts: Webservers
+  become: true
+
+  tasks:
+
+   - name:Installation of packages on multiple OS
+     when: ansible_os_family == "Debian"
+     apt: path={{item}} state=present
+     with_items:
+     - 'vim'
+     - 'curl'
+     - 'nginx'
+
+   - name:Installation of packages on multiple OS
+     when: ansible_os_family == "RedHat"
+     yum: path={{item}} state=present
+     with_items:
+     - 'vim'
+     - 'curl'
+     - 'nginx'
